@@ -2,3 +2,7 @@ main {
   background-color: darkgrey;
   min-height: 100vh;
 }
+
+.appContainer {
+  position: relative;
+}

@@ -1,0 +1,17 @@
+.loadingIndicatorOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 999;
+  background-color: rgba(0, 0, 0, 0.2);
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.loadingIndicator {
+  background-color: white;
+  padding: 2rem;
+}
