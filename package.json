@@ -23,6 +23,11 @@
     "react-sketch": "^0.5.1",
     "typescript": "^3.8.3"
   },
+  "author": {
+    "email": "teggno@hotmail.com",
+    "name": "Christian Bär",
+    "url": "https://www.adwise.ch"
+  },
   "eslintConfig": {
     "extends": "react-app"
   },
