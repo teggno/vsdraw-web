@@ -1,44 +1,45 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+markdown want have drawing
 
-## Available Scripts
+possible worklfow for add new
 
-In the project directory, you can run:
+1. keyboard shortcut: draw
+2. browser opens with some website that allows for drawing
+3. copy drawing url as markdown
+4. go back to vscode and insert
 
-### `npm start`
+possible workflow for edit
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+1. have cursor inside drawing link in markdown
+2. keyboard shortcut or some light bulb thingy for edit
+3. url opens up for edit (url that is a png or jpg url must be converted to go back to the editor)
+4. do changes ...
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+implementation
 
-### `npm test`
+- Editor online that saves image data automatically
+- copy as md link button
+  - stores data in cloud (API)
+  - generates jpg or png link and returns that (API, API endpoint returning the image for that link)
+  - page js wraps link with markdown and to clipboard
+  - editing: vscode extension changes the link to editable url
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+API
 
-### `npm run build`
+- receive editable image data + image, return json containing editable and image link
+- receive editable link, return editable data
+- receive image link, return image
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Roadmap:
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+- multi device editing (i.e. code on mac, draw on ipad)
+  1. vscode extension: log in
+  2. vscode extension: hit edit
+  3. ipad website: log in
+  4. ipad website: popup if want to start editing
+- vscode plugin downloads image and puts into project
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Widgets
 
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+drawerjs
+literally canvas
+react-sketch

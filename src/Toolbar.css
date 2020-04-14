@@ -1,0 +1,9 @@
+.toolbar {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.toolbarItem {
+  display: inline-block;
+}
