@@ -1,5 +1,5 @@
 import React from "react";
-import { Toolbar, ToolbarTextButton } from "./Toolbar";
+import { Toolbar, ToolbarButton } from "./Toolbar";
 
 export default function OutputToolbar({
   onMarkdownLinkToClipoard,
@@ -8,13 +8,14 @@ export default function OutputToolbar({
 }: OutputToolbarProps) {
   return (
     <Toolbar>
-      <ToolbarTextButton
+      <ToolbarButton
         text="MD"
-        title="Markdown image link to clipboard"
+        title="Copy as Markdown image link to clipboard"
         onClick={onMarkdownLinkToClipoard}
+        image="./icons/file_copy-24px.svg"
       />
       {canSave ? (
-        <ToolbarTextButton text="Save" title="Save" onClick={onSave} />
+        <ToolbarButton text="Save" title="Save" onClick={onSave} />
       ) : null}
     </Toolbar>
   );

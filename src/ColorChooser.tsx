@@ -5,8 +5,8 @@ export default function ColorChooser({
   colorChanged,
 }: ColorChooserProps) {
   return (
-    <div>
-      <div>Line</div>
+    <div className="colorChooser">
+      <div>Color</div>
       <input
         type="color"
         value={color}

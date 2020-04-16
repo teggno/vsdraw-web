@@ -10,6 +10,7 @@ import { dataUriToBlob } from "./utils";
 import { copyStringToClipboard } from "./clipboard";
 import useHashParams from "./useHashParams";
 import vsCodeApiFactory, { ImgeUrlSaver } from "./vsCodeApi";
+import CanvasSize from "./CanvasSize";
 const { SketchField, Tools } = require("react-sketch");
 
 export default function App() {
@@ -20,6 +21,7 @@ export default function App() {
   const [loadingText, setLoadingText] = useState("Loading...");
   const [color, setColor] = useState("#000000");
   const [tool, setTool] = useState(Tools.Pencil);
+  const [size, setSize] = useState({ width: 500, height: 500 });
 
   const vsCodeApi = saveRemoteImageUrl
     ? vsCodeApiFactory({ saveRemoteImageUrl })
@@ -48,8 +50,8 @@ export default function App() {
           toolbar={<DrawingToolbar toolChange={setTool} />}
           sketchField={
             <SketchField
-              width="1024px"
-              height="768px"
+              width={size.width}
+              height={size.height}
               tool={tool}
               lineColor={color}
               value={imageData}
@@ -59,6 +61,7 @@ export default function App() {
             />
           }
           sidebar={<Sidebar color={{ color: color, colorChanged: setColor }} />}
+          canvasSize={<CanvasSize size={size} onChange={setSize} />}
           output={
             <OutputToolbar
               onMarkdownLinkToClipoard={() => {

@@ -1,9 +1,52 @@
 .toolbar {
+  font-size: 0;
   list-style: none;
   padding: 0;
   margin: 0;
+  box-sizing: border-box;
+  padding: 0.125rem;
 }
 
 .toolbarItem {
   display: inline-block;
+  box-sizing: border-box;
+  padding: 0.125rem;
+}
+
+.toolbarButton {
+  height: 1.5rem;
+  border: 0 none;
+  box-sizing: border-box;
+  border: 1px solid transparent;
+  display: inline-block;
+}
+
+.toolbarButton:hover {
+  cursor: pointer;
+}
+
+.toolbarButton:active {
+  background-color: silver;
+  border-top: solid black 1px;
+  border-left: solid black 1px;
+}
+
+.toolbarImageButton {
+  width: 1.5rem;
+  padding: 0.25rem;
+  background-size: contain;
+  background-position: center;
+  background-origin: content-box;
+  background-repeat: no-repeat;
+}
+.toolbarImageButton.toolbarTextButton {
+  width: auto;
+  padding: 0.25rem 0.25rem 0.25rem 1.5rem;
+  background-size: 1rem;
+  background-position: 0.25rem 0.25rem;
+  background-origin: border-box;
+}
+
+.toolbarTextButton {
+  font-size: 0.75rem;
 }

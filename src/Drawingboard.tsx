@@ -6,11 +6,13 @@ export default function Drawingboard({
   toolbar,
   output,
   sidebar,
+  canvasSize,
 }: DrawingboardProps) {
   return (
     <div className="drawingboard">
-      <div>
-        {toolbar}
+      <div>{toolbar}</div>
+      <div className="bottomToolbar">
+        {canvasSize}
         {output}
       </div>
       <div className="sideAndSketch">
@@ -26,4 +28,5 @@ interface DrawingboardProps {
   toolbar: ReactNode;
   output: ReactNode;
   sidebar: ReactNode;
+  canvasSize: ReactNode;
 }

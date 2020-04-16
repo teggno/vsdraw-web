@@ -17,8 +17,36 @@ export function ToolbarTextButton({
   title,
 }: ToolbarTextButtonProps) {
   return (
-    <button onClick={onClick} title={title || text}>
+    <button
+      className="toolbarButton"
+      onClick={onClick}
+      title={title || text}
+      type="button"
+    >
       {text}
+    </button>
+  );
+}
+
+export function ToolbarButton({
+  image,
+  onClick,
+  title,
+  text,
+}: ToolbarImageButtonProps) {
+  return (
+    <button
+      className={`toolbarButton${image ? " toolbarImageButton" : ""}${
+        text ? " toolbarTextButton" : ""
+      }`}
+      type="button"
+      onClick={onClick}
+      title={title}
+      style={{
+        backgroundImage: image ? `url(${image})` : undefined,
+      }}
+    >
+      {text || null}
     </button>
   );
 }
@@ -33,4 +61,11 @@ interface ToolbarTextButtonProps {
   onClick: () => void;
   text: string;
   title?: string;
+}
+
+interface ToolbarImageButtonProps {
+  onClick: () => void;
+  image?: string;
+  title?: string;
+  text?: string;
 }

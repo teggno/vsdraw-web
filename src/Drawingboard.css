@@ -1,3 +1,10 @@
 .sideAndSketch {
   display: flex;
 }
+.drawingboard {
+  font-size: 0.75rem;
+}
+.bottomToolbar {
+  display: flex;
+  align-items: center;
+}
