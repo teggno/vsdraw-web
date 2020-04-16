@@ -1,38 +1,36 @@
-import React from "react";
+import React, { PropsWithChildren } from "react";
 import "./Toolbar.css";
 
-export default function Toolbar({ toolChange }: ToolbarProps) {
+export function Toolbar(props: PropsWithChildren<{}>) {
   return (
     <ul className="toolbar">
-      <ToolbarItem>
-        <ToolbarTextButton text="Select" onClick={() => toolChange("select")} />
-      </ToolbarItem>
-      <ToolbarItem>
-        <ToolbarTextButton text="Pencil" onClick={() => toolChange("pencil")} />
-      </ToolbarItem>
-      <ToolbarItem>
-        <ToolbarTextButton
-          text="Rectangle"
-          onClick={() => toolChange("rectangle")}
-        />
-      </ToolbarItem>
+      {React.Children.map(props.children, (c) => (
+        <ToolbarItem>{c}</ToolbarItem>
+      ))}
     </ul>
   );
 }
 
-interface ToolbarProps {
-  toolChange: (tool: string) => void;
+export function ToolbarTextButton({
+  text,
+  onClick,
+  title,
+}: ToolbarTextButtonProps) {
+  return (
+    <button onClick={onClick} title={title || text}>
+      {text}
+    </button>
+  );
 }
 
-function ToolbarTextButton({ text, onClick }: ToolbarButtonProps) {
-  return <button onClick={onClick}>{text}</button>;
+function ToolbarItem(props: PropsWithChildren<{}>) {
+  return props.children ? (
+    <li className="toolbarItem">{React.Children.only(props.children)}</li>
+  ) : null;
 }
 
-function ToolbarItem(props: any) {
-  return <li className="toolbarItem">{React.Children.only(props.children)}</li>;
-}
-
-interface ToolbarButtonProps {
+interface ToolbarTextButtonProps {
   onClick: () => void;
-  text?: string;
+  text: string;
+  title?: string;
 }

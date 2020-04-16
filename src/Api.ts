@@ -1,3 +1,6 @@
+const saveUrl = "https://vsdraw.azurewebsites.net/api/SaveImage";
+// const saveUrl = "http://localhost:3232";
+
 export function saveToCloud(
   image: any,
   imageData: string
@@ -7,7 +10,7 @@ export function saveToCloud(
   formData.append("ImageData", imageData);
   formData.append("Image", image);
 
-  return fetch("https://vsdraw.azurewebsites.net/api/SaveImage", {
+  return fetch(saveUrl, {
     method: "POST",
     body: formData,
   }).then((r) => r.json());

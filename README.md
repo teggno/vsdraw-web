@@ -1,3 +1,26 @@
+# VSDRAW
+
+(Almost) seamlessly edit your images from within vscode!
+
+Editing images in current workspace
+**only works if both, image and data files are saved**
+
+1. Scan QR
+2. Web app hosted in server in vscode opens
+3. Save button posts to web server running in vscode. Image is changed (data file and png file)
+
+Editing images from online vsdraw
+
+1. Scan QR
+2. Online or local vsdraw is opened on device
+3. Save button creates new version.
+
+**===> Also posts new version to vscode server which updates link in markdown.**
+
+=> Local vscode server endpoint taking new image url
+
+## Features
+
 markdown want have drawing
 
 possible worklfow for add new
@@ -44,8 +67,4 @@ drawerjs
 literally canvas
 react-sketch
 
-![alt text](https://vsdraw.blob.core.windows.net/image/e6ec9844-2c6d-437e-a698-db7648c61e78.png)
-
-![alt text](https://vsdraw.blob.core.windows.net/image/c96f779a-ae64-41db-acb2-c4058a142a4f.png)
-
-![alt text](https://vsdraw.blob.core.windows.net/image/5a189657-9a0d-46cc-9c22-53977d117d78.png)
+![alt text](https://vsdraw.blob.core.windows.net/image/c3ed71f3-f14e-42f1-a71d-b50f8a2df786.png)

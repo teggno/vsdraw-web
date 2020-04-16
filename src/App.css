@@ -6,3 +6,7 @@ main {
 .appContainer {
   position: relative;
 }
+
+.sketchField {
+  background-color: white;
+}
