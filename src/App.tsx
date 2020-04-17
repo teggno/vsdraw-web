@@ -11,7 +11,7 @@ import { copyStringToClipboard } from "./clipboard";
 import useHashParams from "./useHashParams";
 import vsCodeApiFactory, { ImgeUrlSaver } from "./vsCodeApi";
 import CanvasSize from "./CanvasSize";
-import { Size } from "./Dimensions";
+import { Size } from "./dimensions";
 const { SketchField, Tools } = require("react-sketch");
 
 export default function App() {

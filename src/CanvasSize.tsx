@@ -1,6 +1,6 @@
 import React from "react";
 import "./CanvasSize.css";
-import { Size } from "./Dimensions";
+import { Size } from "./dimensions";
 
 export default function CanvasSize({
   size,

@@ -1,4 +1,4 @@
-import { Size } from "./Dimensions";
+import { Size } from "./dimensions";
 
 const saveUrl = "https://vsdraw.azurewebsites.net/api/SaveImage";
 // const saveUrl = "http://localhost:3232";
