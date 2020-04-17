@@ -1,4 +1,4 @@
-import React, { ReactNode } from "react";
+import React, { ReactNode, useEffect, DOMElement } from "react";
 import "./Drawingboard.css";
 
 export default function Drawingboard({
@@ -8,8 +8,21 @@ export default function Drawingboard({
   sidebar,
   canvasSize,
 }: DrawingboardProps) {
+  const listener = (e: TouchEvent) => {
+    if (e.touches.length !== 2) return;
+
+    console.log("Two fingers");
+  };
+  useEffect(() => {
+    return () => {
+      (window.document.getElementsByClassName(
+        "sketchFieldContainer"
+      )[0] as any).addEventListener("mousedown", listener);
+    };
+  });
+
   return (
-    <div className="drawingboard">
+    <>
       <div>{toolbar}</div>
       <div className="bottomToolbar">
         {canvasSize}
@@ -17,9 +30,9 @@ export default function Drawingboard({
       </div>
       <div className="sideAndSketch">
         {sidebar}
-        {sketchField}
+        <div className="sketchFieldContainer">{sketchField}</div>
       </div>
-    </div>
+    </>
   );
 }
 
