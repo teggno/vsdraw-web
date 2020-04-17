@@ -14,7 +14,7 @@
 }
 
 .toolbarButton {
-  height: 1.5rem;
+  height: 3rem;
   border: 0 none;
   box-sizing: border-box;
   border: 1px solid transparent;
@@ -33,7 +33,7 @@
 }
 
 .toolbarImageButton {
-  width: 1.5rem;
+  width: 3rem;
   padding: 0.25rem;
   background-size: contain;
   background-position: center;
@@ -42,12 +42,12 @@
 }
 .toolbarImageButton.toolbarTextButton {
   width: auto;
-  padding: 0.25rem 0.25rem 0.25rem 1.5rem;
-  background-size: 1rem;
-  background-position: 0.25rem 0.25rem;
+  padding: 0.5rem 0.5rem 0.5rem 3rem;
+  background-size: 2rem;
+  background-position: 0.5rem 0.5rem;
   background-origin: border-box;
 }
 
 .toolbarTextButton {
-  font-size: 0.75rem;
+  font-size: 1.5rem;
 }

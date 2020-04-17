@@ -2,9 +2,14 @@
   padding: 0.125rem;
   white-space: nowrap;
 }
+.dimensionInput input {
+  width: 5rem;
+  font-size: 1.5rem;
+}
 .dimensionInputLabel {
   padding-right: 0.25rem;
 }
 .canvasSize {
   padding: 0.125rem;
+  font-size: 1.5rem;
 }

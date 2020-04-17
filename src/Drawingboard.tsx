@@ -8,19 +8,6 @@ export default function Drawingboard({
   sidebar,
   canvasSize,
 }: DrawingboardProps) {
-  const listener = (e: TouchEvent) => {
-    if (e.touches.length !== 2) return;
-
-    console.log("Two fingers");
-  };
-  useEffect(() => {
-    return () => {
-      (window.document.getElementsByClassName(
-        "sketchFieldContainer"
-      )[0] as any).addEventListener("mousedown", listener);
-    };
-  });
-
   return (
     <>
       <div>{toolbar}</div>
