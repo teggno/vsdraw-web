@@ -11,12 +11,13 @@ import { copyStringToClipboard } from "./clipboard";
 import useHashParams from "./useHashParams";
 import vsCodeApiFactory, { ImgeUrlSaver } from "./vsCodeApi";
 import CanvasSize from "./CanvasSize";
+import { Size } from "./Dimensions";
 const { SketchField, Tools } = require("react-sketch");
 
 export default function App() {
   const [{ saveRemoteImageUrl, imageUrl }, setHashParams] = useHashParams();
   const sketchFieldRef = useRef();
-  const [imageData, setImageData] = useState(null);
+  const [image, setImage] = useState(null);
   const [isLoading, setLoading] = useState(false);
   const [loadingText, setLoadingText] = useState("Loading...");
   const [lineColor, setLineColor] = useState("#000000");
@@ -31,16 +32,18 @@ export default function App() {
 
   useEffect(() => {
     if (!imageUrl) {
-      setImageData(null);
+      setImage(null);
       return;
     }
     setLoading(true);
     loadImageData(extractImageId(imageUrl))
-      .then(setImageData)
+      .then((imageData) => {
+        setImage(imageData.image);
+        setSize(imageData.size);
+      })
       .finally(() => setLoading(false));
   }, [imageUrl]);
   const keyListener = (e: KeyboardEvent) => {
-    console.log("FPPP", e.code, e.key);
     if (e.code === "Delete" || e.key === "Backspace") {
       deleteSelected();
       e.preventDefault();
@@ -82,7 +85,7 @@ export default function App() {
               tool={tool}
               lineColor={lineColor}
               fillColor={fillColor}
-              value={imageData}
+              value={image}
               ref={sketchFieldRef}
               className="sketchField"
               lineWidth={3}
@@ -99,7 +102,7 @@ export default function App() {
             <OutputToolbar
               onMarkdownLinkToClipoard={() => {
                 withLoading("Saving Image...", () =>
-                  markdownToClipboardClicked(sketchFieldRef.current)
+                  markdownToClipboardClicked(sketchFieldRef.current, size)
                 );
               }}
               onSave={() => {
@@ -108,7 +111,8 @@ export default function App() {
                   saveClicked(
                     sketchFieldRef.current,
                     vsCodeApi!.saveInVsCode,
-                    imageUrl!
+                    imageUrl!,
+                    size
                   ).then((newImageUrl) =>
                     setHashParams({ imageUrl: newImageUrl })
                   )
@@ -134,10 +138,16 @@ function extractImageId(vsdrawImageLink: string) {
   return parts[parts.length - 1].split(".")[0];
 }
 
-async function markdownToClipboardClicked(sketchField: any) {
+function makeImageData(sketchFieldJson: any, canvasSize: Size) {
+  return { image: sketchFieldJson, size: canvasSize };
+}
+async function markdownToClipboardClicked(sketchField: any, canvasSize: Size) {
   const image = dataUriToBlob(sketchField.toDataURL());
   const imageData = sketchField.toJSON();
-  const { imageUrl } = await saveToCloud(image, JSON.stringify(imageData));
+  const { imageUrl } = await saveToCloud(
+    image,
+    makeImageData(imageData, canvasSize)
+  );
   const markdown = `![alt text](${imageUrl})`;
   copyStringToClipboard(markdown);
 }
@@ -145,11 +155,15 @@ async function markdownToClipboardClicked(sketchField: any) {
 async function saveClicked(
   sketchField: any,
   saveInVsCode: ImgeUrlSaver,
-  oldImageUrl: string
+  oldImageUrl: string,
+  canvasSize: Size
 ) {
   const image = dataUriToBlob(sketchField.toDataURL());
   const imageData = sketchField.toJSON();
-  const { imageUrl } = await saveToCloud(image, JSON.stringify(imageData));
+  const { imageUrl } = await saveToCloud(
+    image,
+    makeImageData(imageData, canvasSize)
+  );
   await saveInVsCode(oldImageUrl, imageUrl);
   return imageUrl;
 }

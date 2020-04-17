@@ -1,13 +1,15 @@
+import { Size } from "./Dimensions";
+
 const saveUrl = "https://vsdraw.azurewebsites.net/api/SaveImage";
 // const saveUrl = "http://localhost:3232";
 
 export function saveToCloud(
   image: any,
-  imageData: string
+  imageData: ImageData
 ): Promise<SaveImageResponse> {
   const formData = new FormData();
 
-  formData.append("ImageData", imageData);
+  formData.append("ImageData", JSON.stringify(imageData));
   formData.append("Image", image);
 
   return fetch(saveUrl, {
@@ -24,5 +26,16 @@ interface SaveImageResponse {
 export function loadImageData(imageId: string) {
   return fetch(
     `https://vsdraw.blob.core.windows.net/imagedata/${imageId}.json`
-  ).then((r) => r.json());
+  ).then((r) => r.json() as Promise<ImageData>);
+}
+
+interface ImageData {
+  /**
+   * This is what is returned from sketchField.toJSON()
+   */
+  image: any;
+  /**
+   * Size of the canvas.
+   */
+  size: Size;
 }

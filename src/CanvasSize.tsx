@@ -1,5 +1,6 @@
 import React from "react";
 import "./CanvasSize.css";
+import { Size } from "./Dimensions";
 
 export default function CanvasSize({
   size,
@@ -25,11 +26,6 @@ export default function CanvasSize({
       />
     </div>
   );
-}
-
-interface Size {
-  width: number;
-  height: number;
 }
 
 function DimensionInput({
