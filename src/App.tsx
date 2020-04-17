@@ -47,7 +47,7 @@ export default function App() {
       </header>
       <main>
         <Drawingboard
-          toolbar={<DrawingToolbar toolChange={setTool} />}
+          toolbar={<DrawingToolbar toolChange={setTool} tool={tool} />}
           sketchField={
             <SketchField
               width={size.width}

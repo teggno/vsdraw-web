@@ -25,7 +25,8 @@
   cursor: pointer;
 }
 
-.toolbarButton:active {
+.toolbarButton:active,
+.toolbarButton.on {
   background-color: silver;
   border-top: solid black 1px;
   border-left: solid black 1px;

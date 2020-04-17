@@ -1,36 +1,45 @@
 import React from "react";
-import { Toolbar, ToolbarButton } from "./Toolbar";
+import { Toolbar, ToolbarToggleButton } from "./Toolbar";
 const { Tools } = require("react-sketch");
 
-export default function DrawingToolbar({ toolChange }: DrawingToolbarProps) {
+export default function DrawingToolbar({
+  toolChange,
+  tool,
+}: DrawingToolbarProps) {
   return (
     <Toolbar>
-      <ToolbarButton
+      <ToolbarToggleButton
+        on={tool === Tools.Select}
         image="./icons/pointer.svg"
         title="Select"
         onClick={() => toolChange(Tools.Select)}
       />
-      <ToolbarButton
+      <ToolbarToggleButton
+        on={tool === Tools.Pan}
         image="./icons/pan_tool-24px.svg"
         title="Pan"
         onClick={() => toolChange(Tools.Pan)}
       />
-      <ToolbarButton
+      <ToolbarToggleButton
+        on={tool === Tools.Pencil}
         image="./icons/create-24px.svg"
         title="Pencil"
         onClick={() => toolChange(Tools.Pencil)}
       />
-      <ToolbarButton
+      <ToolbarToggleButton
+        on={tool === Tools.Line}
         image="./icons/line.svg"
         title="Line"
         onClick={() => toolChange(Tools.Line)}
       />
-      <ToolbarButton
+      <ToolbarToggleButton
+        on={tool === Tools.Circle}
         image="./icons/circle.svg"
         title="Circle"
         onClick={() => toolChange(Tools.Circle)}
       />
-      <ToolbarButton
+      <ToolbarToggleButton
+        on={tool === Tools.Rectangle}
         image="./icons/rectangle.svg"
         title="Rectangle"
         onClick={() => toolChange(Tools.Rectangle)}
@@ -41,4 +50,5 @@ export default function DrawingToolbar({ toolChange }: DrawingToolbarProps) {
 
 interface DrawingToolbarProps {
   toolChange: (tool: string) => void;
+  tool: string;
 }

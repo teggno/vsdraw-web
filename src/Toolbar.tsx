@@ -33,12 +33,13 @@ export function ToolbarButton({
   onClick,
   title,
   text,
-}: ToolbarImageButtonProps) {
+  className,
+}: ToolbarButtonProps) {
   return (
     <button
       className={`toolbarButton${image ? " toolbarImageButton" : ""}${
         text ? " toolbarTextButton" : ""
-      }`}
+      }${className ? " " + className : ""}`}
       type="button"
       onClick={onClick}
       title={title}
@@ -49,6 +50,12 @@ export function ToolbarButton({
       {text || null}
     </button>
   );
+}
+
+export function ToolbarToggleButton(
+  props: ToolbarButtonProps & { on: boolean }
+) {
+  return <ToolbarButton className={props.on ? "on" : ""} {...props} />;
 }
 
 function ToolbarItem(props: PropsWithChildren<{}>) {
@@ -63,9 +70,10 @@ interface ToolbarTextButtonProps {
   title?: string;
 }
 
-interface ToolbarImageButtonProps {
+interface ToolbarButtonProps {
   onClick: () => void;
   image?: string;
   title?: string;
   text?: string;
+  className?: string;
 }
