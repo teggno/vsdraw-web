@@ -4,7 +4,7 @@ import { loadImageData, saveToCloud } from "./Api";
 import LoadingIndicator from "./LoadingIndicator";
 import Drawingboard from "./Drawingboard";
 import DrawingToolbar from "./DrawingToolbar";
-import Sidebar from "./Sidebar";
+import Sidebar, { transparent } from "./Sidebar";
 import OutputToolbar from "./OutputToolbar";
 import { dataUriToBlob } from "./utils";
 import { copyStringToClipboard } from "./clipboard";
@@ -19,7 +19,8 @@ export default function App() {
   const [imageData, setImageData] = useState(null);
   const [isLoading, setLoading] = useState(false);
   const [loadingText, setLoadingText] = useState("Loading...");
-  const [color, setColor] = useState("#000000");
+  const [lineColor, setLineColor] = useState("#000000");
+  const [fillColor, setFillColor] = useState(transparent);
   const [tool, setTool] = useState(Tools.Pencil);
   const [size, setSize] = useState({ width: 500, height: 500 });
 
@@ -38,6 +39,18 @@ export default function App() {
       .then(setImageData)
       .finally(() => setLoading(false));
   }, [imageUrl]);
+  const keyListener = (e: KeyboardEvent) => {
+    if (e.code === "Delete" || e.key === "Backspace") {
+      (sketchFieldRef.current as any)?.removeSelected();
+      e.preventDefault();
+    }
+  };
+  useEffect(() => {
+    window.addEventListener("keyup", keyListener);
+    return () => {
+      window.removeEventListener("keyup", keyListener);
+    };
+  });
 
   return (
     <div className="appContainer">
@@ -53,14 +66,20 @@ export default function App() {
               width={size.width}
               height={size.height}
               tool={tool}
-              lineColor={color}
+              lineColor={lineColor}
+              fillColor={fillColor}
               value={imageData}
               ref={sketchFieldRef}
               className="sketchField"
               lineWidth={3}
             />
           }
-          sidebar={<Sidebar color={{ color: color, colorChanged: setColor }} />}
+          sidebar={
+            <Sidebar
+              lineColor={{ color: lineColor, colorChanged: setLineColor }}
+              fillColor={{ color: fillColor, colorChanged: setFillColor }}
+            />
+          }
           canvasSize={<CanvasSize size={size} onChange={setSize} />}
           output={
             <OutputToolbar
