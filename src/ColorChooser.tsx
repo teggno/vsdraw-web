@@ -3,15 +3,18 @@ import React from "react";
 export default function ColorChooser({
   color,
   colorChanged,
-}: ColorChooserProps) {
+  label,
+}: ColorChooserProps & { label: string }) {
   return (
     <div className="colorChooser">
-      <div>Color</div>
-      <input
-        type="color"
-        value={color}
-        onChange={(e) => colorChanged(e.target.value)}
-      />
+      <label>
+        <div>{label}</div>
+        <input
+          type="color"
+          value={color}
+          onChange={(e) => colorChanged(e.target.value)}
+        />
+      </label>
     </div>
   );
 }

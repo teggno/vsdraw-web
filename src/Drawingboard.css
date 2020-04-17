@@ -10,7 +10,7 @@
   flex-direction: column;
 }
 .sketchFieldContainer {
-  overflow: scroll;
+  overflow: auto;
 }
 @media screen and (min-width: 700px) {
   .sideAndSketch {

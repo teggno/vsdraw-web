@@ -1,4 +1,4 @@
-import React, { ReactNode, useEffect, DOMElement } from "react";
+import React, { ReactNode } from "react";
 import "./Drawingboard.css";
 
 export default function Drawingboard({
