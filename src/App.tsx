@@ -40,8 +40,12 @@ export default function App() {
       .finally(() => setLoading(false));
   }, [imageUrl]);
   const keyListener = (e: KeyboardEvent) => {
+    console.log("FPPP", e.code, e.key);
     if (e.code === "Delete" || e.key === "Backspace") {
-      (sketchFieldRef.current as any)?.removeSelected();
+      deleteSelected();
+      e.preventDefault();
+    } else if (toolsByKey[e.key]) {
+      setTool(toolsByKey[e.key]);
       e.preventDefault();
     }
   };
@@ -52,6 +56,10 @@ export default function App() {
     };
   });
 
+  function deleteSelected() {
+    (sketchFieldRef.current as any)?.removeSelected();
+  }
+
   return (
     <div className="appContainer">
       {isLoading ? <LoadingIndicator text={loadingText} /> : null}
@@ -60,7 +68,13 @@ export default function App() {
       </header>
       <main>
         <Drawingboard
-          toolbar={<DrawingToolbar toolChange={setTool} tool={tool} />}
+          toolbar={
+            <DrawingToolbar
+              toolChange={setTool}
+              tool={tool}
+              onDelete={deleteSelected}
+            />
+          }
           sketchField={
             <SketchField
               width={size.width}
@@ -139,3 +153,12 @@ async function saveClicked(
   await saveInVsCode(oldImageUrl, imageUrl);
   return imageUrl;
 }
+
+const toolsByKey: any = {
+  s: Tools.Select,
+  m: Tools.Pan,
+  p: Tools.Pencil,
+  l: Tools.Line,
+  c: Tools.Circle,
+  r: Tools.Rectangle,
+};

@@ -1,10 +1,11 @@
 import React from "react";
-import { Toolbar, ToolbarToggleButton } from "./Toolbar";
+import { Toolbar, ToolbarToggleButton, ToolbarButton } from "./Toolbar";
 const { Tools } = require("react-sketch");
 
 export default function DrawingToolbar({
   toolChange,
   tool,
+  onDelete,
 }: DrawingToolbarProps) {
   return (
     <Toolbar>
@@ -44,6 +45,11 @@ export default function DrawingToolbar({
         title="Rectangle"
         onClick={() => toolChange(Tools.Rectangle)}
       />
+      <ToolbarButton
+        image="./icons/clear-24px.svg"
+        title="Delete Selected Shape"
+        onClick={onDelete}
+      />
     </Toolbar>
   );
 }
@@ -51,4 +57,5 @@ export default function DrawingToolbar({
 interface DrawingToolbarProps {
   toolChange: (tool: string) => void;
   tool: string;
+  onDelete: () => void;
 }
