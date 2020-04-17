@@ -44,7 +44,7 @@ export default function App() {
       .finally(() => setLoading(false));
   }, [imageUrl]);
   const keyListener = (e: KeyboardEvent) => {
-    if (e.code === "Delete" || e.key === "Backspace") {
+    if (e.code === "Delete" || e.code === "Backspace") {
       deleteSelected();
       e.preventDefault();
     } else if (toolsByKey[e.key]) {
