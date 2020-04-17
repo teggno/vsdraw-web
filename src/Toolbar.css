@@ -19,6 +19,7 @@
   box-sizing: border-box;
   border: 1px solid transparent;
   display: inline-block;
+  background-color: #eeeeee;
 }
 
 .toolbarButton:hover {
